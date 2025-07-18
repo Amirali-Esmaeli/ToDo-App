@@ -6,7 +6,7 @@ app_name = "api"
 
 router = DefaultRouter()
 router.register("task", TodoViewSet, basename="task")
-\
+
 
 urlpatterns = router.urls
 
