@@ -1,3 +1,11 @@
+# general modules
 django
 python-decouple
 djangorestframework
+
+# third party modules
+markdown       
+django-filter  
+drf-yasg[validation]
+
+# depolyment modules
