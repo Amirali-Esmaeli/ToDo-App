@@ -6,11 +6,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
-from .forms import CustomUserCreationForm,CustomAuthenticationForm
+from .forms import CustomUserCreationForm, CustomAuthenticationForm
+
 # Create your views here.
 
 # FBV
-'''
+"""
 def login_view(request):
     if not request.user.is_authenticated:
         if request.method == "POST":
@@ -29,7 +30,9 @@ def login_view(request):
         return render(request, "accounts/login.html", context)
     else:
         return redirect("/")
-'''
+"""
+
+
 # CBV
 class CustomLoginView(LoginView):
     template_name = "accounts/login.html"
@@ -46,7 +49,9 @@ class CustomLoginView(LoginView):
 
     def get_success_url(self):
         return reverse_lazy("task_list")
-'''
+
+
+"""
 @login_required
 def logout_view(request):
     logout(request)
@@ -72,7 +77,9 @@ def register_view(request):
         return render(request, "accounts/register.html", context)
     else:
         return redirect("/")
-'''
+"""
+
+
 class RegisterPage(FormView):
     template_name = "accounts/register.html"
     form_class = CustomUserCreationForm
@@ -89,5 +96,3 @@ class RegisterPage(FormView):
         if self.request.user.is_authenticated:
             return redirect("task_list")
         return super(RegisterPage, self).get(*args, **kwargs)
-
-

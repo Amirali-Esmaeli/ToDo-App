@@ -4,7 +4,7 @@ from .forms import TaskForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
-from django.views.generic import ListView,DeleteView,UpdateView,CreateView
+from django.views.generic import ListView, DeleteView, UpdateView, CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
@@ -80,10 +80,11 @@ def deleteTask(request, pk):
 # CLASS-BASED VIEWS (CBV)
 
 
-class TaskList(LoginRequiredMixin,ListView):
+class TaskList(LoginRequiredMixin, ListView):
     """
     Display a list of tasks for the currently authenticated user.
     """
+
     model = Task
     context_object_name = "tasks"
     template_name = "tasks/list_task.html"
@@ -91,14 +92,18 @@ class TaskList(LoginRequiredMixin,ListView):
     def get_queryset(self):
         # Only return tasks for the current user
         return self.model.objects.filter(user=self.request.user)
-    
+
+
 class TaskCreate(LoginRequiredMixin, CreateView):
     """
     Create a new task for the current user.
     """
+
     model = Task
     fields = ["title"]
-    success_url = reverse_lazy("task_list") # Redirect after successful creation
+    success_url = reverse_lazy(
+        "task_list"
+    )  # Redirect after successful creation
 
     def form_valid(self, form):
         # Assign the current user to the new task before saving
@@ -110,6 +115,7 @@ class TaskUpdate(LoginRequiredMixin, UpdateView):
     """
     Update an existing task belonging to the current user.
     """
+
     model = Task
     success_url = reverse_lazy("task_list")
     form_class = TaskForm
@@ -124,6 +130,7 @@ class TaskComplete(LoginRequiredMixin, View):
     """
     Toggle the completion status of a task for the current user.
     """
+
     model = Task
     success_url = reverse_lazy("task_list")
 
@@ -133,12 +140,13 @@ class TaskComplete(LoginRequiredMixin, View):
         object.complete = not object.complete
         object.save()
         return redirect(self.success_url)
-    
+
 
 class DeleteView(LoginRequiredMixin, DeleteView):
     """
     Delete a task belonging to the current user.
     """
+
     model = Task
     context_object_name = "task"
     success_url = reverse_lazy("task_list")

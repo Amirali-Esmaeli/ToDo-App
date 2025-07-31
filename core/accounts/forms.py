@@ -5,11 +5,16 @@ from captcha.fields import CaptchaField
 
 User = get_user_model()
 
+
 class CustomUserCreationForm(UserCreationForm):
     captcha = CaptchaField()
-    class Meta():
+
+    class Meta:
         model = User
-        fields = ('email',) 
+        fields = ("email",)
+
 
 class CustomAuthenticationForm(AuthenticationForm):
-    username = forms.EmailField(widget=forms.TextInput(attrs={'autofocus': True}))
+    username = forms.EmailField(
+        widget=forms.TextInput(attrs={"autofocus": True})
+    )

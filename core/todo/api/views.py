@@ -165,7 +165,7 @@ class TodoDetailApiView(APIView):
 '''
 
 # CBV-DRF-GenericView
-'''
+"""
 class TodoListApiView(generics.ListCreateAPIView):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
@@ -198,7 +198,8 @@ class TodoDetailApiView(generics.RetrieveUpdateDestroyAPIView):
         return Response({"detail": "successfully removed"})
 
     def perform_update(self, serializer):
-        serializer.save(user=self.request.user)'''
+        serializer.save(user=self.request.user)"""
+
 
 # CBV-DRF-ViewSet
 class TodoViewSet(viewsets.ModelViewSet):
@@ -206,14 +207,12 @@ class TodoViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filterset_fields = ['complete']
-    search_fields = ['title']
-    ordering_fields = ['created_date']
+    filterset_fields = ["complete"]
+    search_fields = ["title"]
+    ordering_fields = ["created_date"]
 
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user)
-    
+
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-    
-
