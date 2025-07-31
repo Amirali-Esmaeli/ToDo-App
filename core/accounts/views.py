@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm,CustomAuthenticationForm
 # Create your views here.
 
 # FBV
@@ -33,8 +33,16 @@ def login_view(request):
 # CBV
 class CustomLoginView(LoginView):
     template_name = "accounts/login.html"
-    fields = "username","password"
+    authentication_form = CustomAuthenticationForm
     redirect_authenticated_user = True
+
+    def form_valid(self, form):
+        print("فرم اعتبارسنجی شد و کاربر:", form.get_user())
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        print("فرم نامعتبر:", form.errors)
+        return super().form_invalid(form)
 
     def get_success_url(self):
         return reverse_lazy("task_list")

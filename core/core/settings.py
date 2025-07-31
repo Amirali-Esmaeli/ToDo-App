@@ -43,6 +43,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
     'django_filters',
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
+    'captcha',
+    "mail_templated",
 ]
 
 MIDDLEWARE = [
@@ -134,3 +138,29 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = "/accounts/login"
 AUTH_USER_MODEL = 'accounts.User'
+
+# restframework settings
+REST_FRAMEWORK = { 
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ]
+    }
+
+# simplejwt
+from datetime import timedelta
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=10), 
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),     
+}
+
+# email configuration
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_USE_TLS = False
+EMAIL_HOST = "smtp4dev"
+EMAIL_HOST_USER = ""
+EMAIL_HOST_PASSWORD = ""
+EMAIL_PORT = 25
