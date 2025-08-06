@@ -5,8 +5,9 @@ from django.contrib.auth.models import (
     PermissionsMixin,
 )
 from django.utils.translation import gettext_lazy as _
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+
+# from django.db.models.signals import post_save
+# from django.dispatch import receiver
 
 # Create your models here.
 
@@ -19,7 +20,8 @@ class UserManager(BaseUserManager):
 
     def create_user(self, email, password, **extra_fields):
         """
-        Create and save a user with the given email and password and extra data.
+        Create and save a user with the given
+        email and password and extra data.
         """
         if not email:
             raise ValueError(_("the email must be set"))

@@ -89,7 +89,7 @@ class ActivationResendSerializer(serializers.Serializer):
         email = attrs.get("email")
         try:
             user_obj = User.objects.get(email=email)
-        except:
+        except User.DoesNotExist:
             raise serializers.ValidationError(
                 {"detail": "user does not exist"}
             )
@@ -128,7 +128,7 @@ class PasswordResetRequestViewSerializer(serializers.Serializer):
         email = attrs.get("email")
         try:
             user_obj = User.objects.get(email=email)
-        except:
+        except User.DoesNotExist:
             raise serializers.ValidationError(
                 {"detail": "user does not exist"}
             )

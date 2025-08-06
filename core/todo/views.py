@@ -1,9 +1,6 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import redirect
 from .models import Task
 from .forms import TaskForm
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-
 from django.views.generic import ListView, DeleteView, UpdateView, CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -30,7 +27,6 @@ def index(request):
             obj.user = request.user
             obj.save()
         return redirect("/")
-    
     context = {"tasks": tasks, "form": form}
     return render(request, "tasks/list_task.html", context)'''
 

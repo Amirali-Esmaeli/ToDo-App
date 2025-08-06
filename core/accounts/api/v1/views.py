@@ -38,7 +38,6 @@ class RegistrationApiView(generics.GenericAPIView):
         if serializer.is_valid():
             serializer.save()
             email = serializer.validated_data["email"]
-            data = {"email": email}
             user_obj = get_object_or_404(User, email=email)
             token = self.get_tokens_for_user(user_obj)
             email_obj = EmailMessage(
@@ -110,7 +109,8 @@ class ActivationApiView(APIView):
         user_obj.save()
         return Response(
             {
-                "detail": "your account have been verified and activated succesfully"
+                "detail": "your account have been verified "
+                "and activated successfully"
             }
         )
 

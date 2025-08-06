@@ -1,4 +1,3 @@
-from django.urls import path
 from .views import TodoViewSet
 from rest_framework.routers import DefaultRouter
 
@@ -18,5 +17,6 @@ urlpatterns = router.urls
 #     # path("task-update/<str:pk>/", views.taskDetail, name="task-update"),
 #     # path("task-delete/<str:pk>/", views.taskDetail, name="task-delete"),
 #     # path("task-list/", TodoListApiView.as_view(), name="task_list"),
-#     # path("task-detail/<int:todo_id>/", TodoDetailApiView.as_view(), name="task_detail")
+#     # path("task-detail/<int:todo_id>/",
+#           TodoDetailApiView.as_view(), name="task_detail")
 # ]
