@@ -102,7 +102,7 @@ class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
     fields = ["title"]
     success_url = reverse_lazy(
-        "task_list"
+        "todo:task_list"
     )  # Redirect after successful creation
 
     def form_valid(self, form):
@@ -117,7 +117,7 @@ class TaskUpdate(LoginRequiredMixin, UpdateView):
     """
 
     model = Task
-    success_url = reverse_lazy("task_list")
+    success_url = reverse_lazy("todo:task_list")
     form_class = TaskForm
     template_name = "tasks/update_task.html"
 
@@ -132,7 +132,7 @@ class TaskComplete(LoginRequiredMixin, View):
     """
 
     model = Task
-    success_url = reverse_lazy("task_list")
+    success_url = reverse_lazy("todo:task_list")
 
     def get(self, request, *args, **kwargs):
         # Retrieve the task and toggle its completion status
@@ -149,7 +149,7 @@ class DeleteView(LoginRequiredMixin, DeleteView):
 
     model = Task
     context_object_name = "task"
-    success_url = reverse_lazy("task_list")
+    success_url = reverse_lazy("todo:task_list")
 
     def get(self, request, *args, **kwargs):
         # Only allow deleting user's own tasks

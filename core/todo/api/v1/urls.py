@@ -2,7 +2,7 @@ from django.urls import path
 from .views import TodoViewSet
 from rest_framework.routers import DefaultRouter
 
-app_name = "api"
+app_name = "api-v1"
 
 router = DefaultRouter()
 router.register("task", TodoViewSet, basename="task")

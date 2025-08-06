@@ -6,6 +6,7 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView,
 )
 
+app_name = "api-v1"
 
 urlpatterns = [
     # registration

@@ -6,6 +6,6 @@
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Create</button>
-    <a href="{% url 'task_list' %}">Back</a>
+    <a href="{% url 'todo:task_list' %}">Back</a>
   
 {% endblock %}

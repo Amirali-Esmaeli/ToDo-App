@@ -16,7 +16,7 @@
 
       <div class="modal-body p-5 pt-0">
 
-        <form class="pt-3" method="POST" action="{% url 'create_task' %}">
+        <form class="pt-3" method="POST" action="{% url 'todo:create_task' %}">
           {% csrf_token %}
           <div class="input-group mb-3">
             <input type="text" class="form-control rounded-4" name="title" placeholder="Enter task title"
@@ -35,18 +35,18 @@
               <span>{{task}}</span>
               {% endif %}
             </span>
-            <a type="button" class="btn btn-danger" href="{% url 'delete_task' task.id %}"><i class="bi bi-trash"></i></a>
+            <a type="button" class="btn btn-danger" href="{% url 'todo:delete_task' task.id %}"><i class="bi bi-trash"></i></a>
             <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
               aria-expanded="false">
               <span class="visually-hidden">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
               {% if task.complete == True %}
-              <li><a class="dropdown-item" href="{% url 'complete_task' task.id %}">Undo</a></li>
+              <li><a class="dropdown-item" href="{% url 'todo:complete_task' task.id %}">Undo</a></li>
               {% else %}
-              <li><a class="dropdown-item" href="{% url 'complete_task' task.id %}">Done</a></li>
+              <li><a class="dropdown-item" href="{% url 'todo:complete_task' task.id %}">Done</a></li>
               {% endif %}
-              <li><a class="dropdown-item" href="{% url 'update_task' task.id %}">Edit</a></li>
+              <li><a class="dropdown-item" href="{% url 'todo:update_task' task.id %}">Edit</a></li>
             </ul>
           </div>
       
