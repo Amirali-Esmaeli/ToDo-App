@@ -9,11 +9,12 @@ django-filter
 drf-yasg[validation]
 djangorestframework-simplejwt
 django-simple-captcha
+django-cors-headers
+
+# depolyment modules
 
 # email third party modules
 django-mail-templated
-
-# depolyment modules
 
 # refactoring and tests
 black
