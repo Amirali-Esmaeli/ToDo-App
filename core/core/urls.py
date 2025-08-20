@@ -49,6 +49,7 @@ urlpatterns = [
     path("", redirectToApp, name="index"),
     path("accounts/", include("accounts.urls")),
     path("todo/", include("todo.urls")),
+    path("weather/", include("weather.urls")),
     path("api-auth/", include("rest_framework.urls")),
     path(
         "swagger/output.json",

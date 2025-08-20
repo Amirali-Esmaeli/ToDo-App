@@ -10,6 +10,7 @@ drf-yasg[validation]
 djangorestframework-simplejwt
 django-simple-captcha
 django-cors-headers
+requests
 
 # depolyment modules
 
@@ -26,3 +27,4 @@ Faker
 # background process and cache
 celery
 redis
+django-redis
