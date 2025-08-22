@@ -13,6 +13,7 @@ django-cors-headers
 requests
 
 # depolyment modules
+gunicorn
 
 # email third party modules
 django-mail-templated
@@ -28,3 +29,6 @@ Faker
 celery
 redis
 django-redis
+
+# database
+psycopg2-binary

@@ -12,6 +12,6 @@ class WeatherView(APIView):
     def get(self, request, city, *args, **kwargs):
         response = requests.get(
             f"https://api.openweathermap.org/data/2.5/weather?"
-            f"q={city}&appid=11b777dac70bf81beb41dbbee7aa8a49"
+            f"q={city}&appid=YOUR_API_KEY"
         )
         return Response(response.json())

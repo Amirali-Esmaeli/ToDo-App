@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
+from rest_framework.exceptions import PermissionDenied
 
 # from rest_framework.response import Response
 # from rest_framework import status
@@ -205,7 +206,11 @@ class TodoViewSet(viewsets.ModelViewSet):
     ordering_fields = ["created_date"]
 
     def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            raise PermissionDenied("You must be logged in to view your tasks.")
         return super().get_queryset().filter(user=self.request.user)
 
     def perform_create(self, serializer):
+        if not self.request.user.is_authenticated:
+            raise PermissionDenied("You must be logged in to create a task.")
         serializer.save(user=self.request.user)
