@@ -32,4 +32,8 @@ jobs:
         password: ${{secrets.PASSWORD}}
         host: ${{secrets.HOST}}
         port: ${{secrets.PORT}}
-        script: ls
+        script: |
+          cd ${{secrets.PROJECT_PATH}}
+          docker compose -f dcoker-compose-stage.yml stop
+          git pull
+          docker compose -f docker-compose-stage.yml restart
