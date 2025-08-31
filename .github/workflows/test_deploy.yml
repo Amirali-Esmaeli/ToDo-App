@@ -19,7 +19,9 @@ jobs:
       run: docker exec Backend sh -c "flake8"
 
   Deploy:
+    if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
     name: Deploy
+    needs : Test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
