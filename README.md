@@ -1,6 +1,6 @@
 # ToDo-App
 
-This project was developed as part of the **Advanced Django course (https://maktabkhooneh.org/)**.  
+This project was developed as part of the **Advanced Django course (https://maktabkhooneh.org/course/%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d8%ac%d9%86%da%af%d9%88-%d9%be%db%8c%d8%b4%d8%b1%d9%81%d8%aa%d9%87-mk1438/)**.  
 It contains three main applications:  
 `accounts`, `todo`, and `weather`.
 
@@ -42,13 +42,11 @@ The project provides a full-featured authentication API with **Django REST Frame
 - `POST /accounts/api/v1/password-reset/` → Request password reset (email with link is sent)
 - `POST /accounts/api/v1/password-reset-confirm/<uidb64>/<token>/` → Reset password using link
 
----
 
 #### Email Handling
 - Uses `mail_templated.EmailMessage` to send activation & password reset emails.
 - Emails are sent asynchronously with a custom `EmailThread` utility.
 
----
 
 #### Tests (`tests/test_account_api.py`)
 -  Successful user registration (`201 Created`)
